@@ -37,7 +37,7 @@ static NSString *kConstBaseCurrency = @"USD";
 @implementation RJViewController
 
 - (void)updateUIWithLatestResponse {
-    self.currencies = [[self.response valueForKey:kConstRates] allKeys];
+    self.currencies = [[[self.response valueForKey:kConstRates] allKeys] sortedArrayUsingSelector:@selector(compare:)];
     NSString *disclaimerText = [self.response valueForKey:kConstDisclaimer];
     NSString *licenseText = [self.response valueForKey:kConstLicense];
     self.disclaimerTextView.text = [NSString stringWithFormat:@"%@\n\n%@", disclaimerText, licenseText];
